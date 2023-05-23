@@ -7,6 +7,7 @@ import org.example.vista.VentanaEdo;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
 
 public class ControladorEstado extends MouseAdapter {
     private VentanaEdo view;
@@ -18,6 +19,7 @@ public class ControladorEstado extends MouseAdapter {
         this.view.getTblEstados().setModel(modelo);
         this.view.getBtnCargar().addMouseListener(this);
         this.view.getBtnAgregar().addMouseListener(this);
+        this.view.getTblEstados().addMouseListener(this);
     }
 
     @Override
@@ -46,6 +48,17 @@ public class ControladorEstado extends MouseAdapter {
                         , "Error al insertar"
                         , JOptionPane.ERROR_MESSAGE);
             }
+        }
+        if (e.getSource() == view.getTblEstados()){
+            System.out.println("evento sobre la tabla");
+            int index = this.view.getTblEstados().getSelectedRow();
+            Estado tmp = modelo.getEstadoAtIndex(index);
+            try {
+                this.view.getImagenEstado().setIcon(tmp.getImagen());
+            }catch (MalformedURLException mfue){
+                System.out.println(e.toString());
+            }
+
         }
         this.view.limpiar();
     }

@@ -161,4 +161,7 @@ public class ModeloTablaEstado implements TableModel {
         }
         return resultado;
     }
+    public Estado getEstadoAtIndex(int idx){
+        return datos.get(idx);
+    }
 }

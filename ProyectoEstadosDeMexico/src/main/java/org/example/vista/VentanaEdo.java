@@ -25,6 +25,7 @@ public class VentanaEdo extends JFrame {
     private JPanel panel2;//tabla para mostrar libros
     private JPanel panel3;//panel para mostrar imagenes
     private JPanel panel4;//formulario para actualizar y eliminar
+    private JLabel imagenEstado;
     public VentanaEdo(String title) throws HeadlessException {
         super(title);
         this.setSize(800,800);
@@ -76,6 +77,8 @@ public class VentanaEdo extends JFrame {
         // panel 3
         panel3 = new JPanel(new FlowLayout());
         panel3.setBackground(new Color(84, 245, 189));
+        imagenEstado = new JLabel("...");
+        panel3.add(imagenEstado);
         // panel 4
         panel4 = new JPanel(new FlowLayout());
         panel4.setBackground(new Color(128, 104, 246));
@@ -149,6 +152,14 @@ public class VentanaEdo extends JFrame {
 
     public JTextField getTxtId() {
         return txtId;
+    }
+
+    public JLabel getImagenEstado() {
+        return imagenEstado;
+    }
+
+    public void setImagenEstado(JLabel imagenEstado) {
+        this.imagenEstado = imagenEstado;
     }
 
     public void setTxtId(JTextField txtId) {
