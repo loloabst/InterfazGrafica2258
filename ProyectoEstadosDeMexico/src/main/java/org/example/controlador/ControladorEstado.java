@@ -20,6 +20,7 @@ public class ControladorEstado extends MouseAdapter {
         this.view.getBtnCargar().addMouseListener(this);
         this.view.getBtnAgregar().addMouseListener(this);
         this.view.getTblEstados().addMouseListener(this);
+        this.view.getBtnActualizar().addMouseListener(this);
     }
 
     @Override
@@ -51,16 +52,41 @@ public class ControladorEstado extends MouseAdapter {
         }
         if (e.getSource() == view.getTblEstados()){
             System.out.println("evento sobre la tabla");
+
             int index = this.view.getTblEstados().getSelectedRow();
             Estado tmp = modelo.getEstadoAtIndex(index);
+            modelo.getEstadoAtIndex(index);
+            this.view.getTxtEstado().setText(tmp.getNombreEdo());
+            this.view.getTxtCapital().setText(tmp.getCapital());
+            this.view.getTxtMunicipio().setText(tmp.getMunicipio());
+            this.view.getTxtPoblacion().setText(tmp.getPoblacion());
+            this.view.getTxtUrl().setText(tmp.getURL());
             try {
                 this.view.getImagenEstado().setIcon(tmp.getImagen());
             }catch (MalformedURLException mfue){
-                System.out.println(e.toString());
+                System.out.println(mfue.toString());
             }
 
         }
+        if (e.getSource() == this.view.getBtnActualizar()) {
+            int index = this.view.getTblEstados().getSelectedRow();
+            Estado estado = modelo.getEstadoAtIndex(index);
+            estado.setNombreEdo(this.view.getTxtEstado().getText());
+            estado.setCapital(this.view.getTxtCapital().getText());
+            estado.setMunicipio(this.view.getTxtMunicipio().getText());
+            estado.setPoblacion(this.view.getTxtPoblacion().getText());
+            estado.setURL(this.view.getTxtUrl().getText());
+
+            // Aquí puedes realizar la actualización en la base de datos utilizando el objeto estado actualizado
+
+            JOptionPane.showMessageDialog(view, "Se actualizó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            this.view.getTblEstados().updateUI();
+        }
+
+
+
         this.view.limpiar();
+
     }
 }
 

@@ -1,5 +1,7 @@
 package org.example.vista;
 
+import org.example.controlador.ControladorEstado;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,6 +20,7 @@ public class VentanaEdo extends JFrame {
     private JTextField txtUrl;
     private JButton btnAgregar;
     private JButton btnCargar;
+    private JButton btnActualizar;
     private JTable tblEstados;
     private JScrollPane scrollPane;
     private GridLayout layout;
@@ -26,6 +29,15 @@ public class VentanaEdo extends JFrame {
     private JPanel panel3;//panel para mostrar imagenes
     private JPanel panel4;//formulario para actualizar y eliminar
     private JLabel imagenEstado;
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public void setBtnActualizar(JButton btnActualizar) {
+        this.btnActualizar = btnActualizar;
+    }
+
     public VentanaEdo(String title) throws HeadlessException {
         super(title);
         this.setSize(800,800);
@@ -79,9 +91,40 @@ public class VentanaEdo extends JFrame {
         panel3.setBackground(new Color(84, 245, 189));
         imagenEstado = new JLabel("...");
         panel3.add(imagenEstado);
+
         // panel 4
         panel4 = new JPanel(new FlowLayout());
         panel4.setBackground(new Color(128, 104, 246));
+        btnActualizar = new JButton("Actualizar");
+        panel4.add(btnActualizar);
+        lblId = new JLabel("Id: ");
+        lblEstado = new JLabel("Estado: ");
+        lblCapital = new JLabel("Capital: ");
+        lblPoblacion = new JLabel("Poblacion: ");
+        lblMunicipio = new JLabel("Municipios: ");
+        lblUrl = new JLabel("URL: ");
+        txtId = new JTextField(6);
+        txtId.setText("0");
+        txtCapital.setText(String.valueOf(txtEstado));
+        txtId.setEnabled(true);
+        txtEstado = new JTextField(15);
+        txtCapital = new JTextField(15);
+        txtPoblacion = new JTextField(15);
+        txtMunicipio = new JTextField(15);
+        txtUrl = new JTextField(15);
+        panel4.add(lblId);
+        panel4.add(txtId);
+        panel4.add(lblEstado);
+        panel4.add(txtEstado);
+        panel4.add(lblCapital);
+        panel4.add(txtCapital);
+        panel4.add(lblPoblacion);
+        panel4.add(txtPoblacion);
+        panel4.add(lblMunicipio);
+        panel4.add(txtMunicipio);
+        panel4.add(lblUrl);
+        panel4.add(txtUrl);
+
 
 
         this.getContentPane().add(panel1,0);
