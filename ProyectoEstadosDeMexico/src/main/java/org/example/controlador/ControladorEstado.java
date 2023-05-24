@@ -20,6 +20,8 @@ public class ControladorEstado extends MouseAdapter {
         this.view.getBtnCargar().addMouseListener(this);
         this.view.getBtnAgregar().addMouseListener(this);
         this.view.getTblEstados().addMouseListener(this);
+        this.view.getBtnBorrar().addMouseListener(this);
+        this.view.getBtnActualizar().addMouseListener(this);
     }
 
     @Override
@@ -49,16 +51,50 @@ public class ControladorEstado extends MouseAdapter {
                         , JOptionPane.ERROR_MESSAGE);
             }
         }
-        if (e.getSource() == view.getTblEstados()){
+        if (e.getSource() == view.getTblEstados()) {
             System.out.println("evento sobre la tabla");
             int index = this.view.getTblEstados().getSelectedRow();
             Estado tmp = modelo.getEstadoAtIndex(index);
             try {
                 this.view.getImagenEstado().setIcon(tmp.getImagen());
-            }catch (MalformedURLException mfue){
+            } catch (MalformedURLException mfue) {
                 System.out.println(e.toString());
             }
+        }
+        if (e.getSource() == this.view.getBtnActualizar()) {
+            int index = this.view.getTblEstados().getSelectedRow();
+            Estado estado = modelo.getEstadoAtIndex(index);
+            estado.setNombreEdo(this.view.getTxtEstadoE().getText());
+            estado.setCapital(this.view.getTxtCapitalE().getText());
+            estado.setMunicipio(this.view.getTxtMunicipioE().getText());
+            estado.setPoblacion(this.view.getTxtPoblacionE().getText());
+            estado.setURL(this.view.getTxtUrlE().getText());
+            System.out.println(estado);
+            if (modelo.editarEstado(estado)) {
+                JOptionPane.showMessageDialog(view, "se editó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                this.view.getTblEstados().updateUI();
+            } else {
+                JOptionPane.showMessageDialog(view,
+                        "No se pudo editar la base de datos. por favor revise su conexion"
+                        , "Error al insertar"
+                        , JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
+
+        if (e.getSource() == this.view.getBtnBorrar()) {
+            String index = String.valueOf(this.view.getTblEstados().getSelectedRow());
+            System.out.println("ControladorEstado dice: " +index);
+            System.out.println("ControladorEstado dice: " + index.getClass().getSimpleName());
+            if (modelo.borrarEstado(index)) {
+                JOptionPane.showMessageDialog(view, "se borró correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                this.view.getTblEstados().updateUI();
+            } else {
+                JOptionPane.showMessageDialog(view,
+                        "No se pudo borrar la base de datos. por favor revise su conexion"
+                        , "Error al borrar"
+                        , JOptionPane.ERROR_MESSAGE);
+            }
         }
         this.view.limpiar();
     }

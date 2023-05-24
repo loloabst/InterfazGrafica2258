@@ -23,32 +23,37 @@ public class EstadoDAO implements InterfazDAO {
         pstm.setString(4, ((Estado) obj).getPoblacion());
         pstm.setString(5, ((Estado) obj).getURL());
         rowCount = pstm.executeUpdate();
-        return rowCount < 0;
+        return rowCount > 0;
     }
 
     @Override
     public boolean update(Object obj) throws SQLException {
         String sqlUpdate = "UPDATE estados SET nombre = ?, capital = ?, municipio = ?, poblacion = ?, URL = ? WHERE id = ? ; ";
         int rowCount = 0;
+        System.out.println("EstadoDAO dice: " + obj);
         PreparedStatement pstm = ConexionSingleton.getInstance("estadosDB.db").getConnection().prepareStatement(sqlUpdate);
         pstm.setString(1, ((Estado) obj).getNombreEdo());
         pstm.setString(2, ((Estado) obj).getCapital());
-        pstm.setString(1, ((Estado) obj).getMunicipio());
-        pstm.setString(2, ((Estado) obj).getPoblacion());
-        pstm.setString(1, ((Estado) obj).getURL());
+        pstm.setString(3, ((Estado) obj).getMunicipio());
+        pstm.setString(4, ((Estado) obj).getPoblacion());
+        pstm.setString(5, ((Estado) obj).getURL());
+        System.out.println("EstadoDAO dice: " + pstm);
         rowCount = pstm.executeUpdate();
-        return rowCount < 0;
+        return rowCount > 0;
     }
 
     @Override
-    public boolean delete(String id) throws SQLException {
-        String sqlDelete = "DELETE FROM estados WHERE id = ? ; ";
+    public boolean delete(String index) throws SQLException {
+        System.out.println("EstadoDAO dice: " + index);
+        String sqlDelete = "DELETE FROM estados WHERE id = ?;";
         int rowCount = 0;
         PreparedStatement pstm = ConexionSingleton.getInstance("estadosDB.db").getConnection().prepareStatement(sqlDelete);
-        pstm.setInt(1, Integer.parseInt(id));
-        rowCount = pstm.executeUpdate();
+        pstm.setInt(1, Integer.parseInt(index));
+        System.out.println("valor pstm : " + pstm );
+        rowCount = pstm.executeUpdate(); // numero de filas afectadas
+        System.out.println("valor rowcount : " +rowCount);
 
-        return rowCount < 0;
+        return rowCount > 0;
     }
 
     @Override

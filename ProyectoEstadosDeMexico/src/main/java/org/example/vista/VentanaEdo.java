@@ -16,8 +16,22 @@ public class VentanaEdo extends JFrame {
     private JTextField txtPoblacion;
     private JTextField txtMunicipio;
     private JTextField txtUrl;
+    private JLabel lblIdE;
+    private JLabel lblEstadoE;
+    private JLabel lblCapitalE;
+    private JLabel lblPoblacionE;
+    private JLabel lblMunicipioE;
+    private JLabel lblUrlE;
+    private JTextField txtIdE;
+    private JTextField txtEstadoE;
+    private JTextField txtCapitalE;
+    private JTextField txtPoblacionE;
+    private JTextField txtMunicipioE;
+    private JTextField txtUrlE;
     private JButton btnAgregar;
     private JButton btnCargar;
+    private JButton btnBorrar;
+    private JButton btnActualizar;
     private JTable tblEstados;
     private JScrollPane scrollPane;
     private GridLayout layout;
@@ -79,10 +93,40 @@ public class VentanaEdo extends JFrame {
         panel3.setBackground(new Color(84, 245, 189));
         imagenEstado = new JLabel("...");
         panel3.add(imagenEstado);
+
         // panel 4
         panel4 = new JPanel(new FlowLayout());
         panel4.setBackground(new Color(128, 104, 246));
-
+        btnActualizar = new JButton("Actualizar");
+        btnBorrar = new JButton("Borrar");
+        lblIdE = new JLabel("Id: ");
+        lblEstadoE = new JLabel("Estado: ");
+        lblCapitalE = new JLabel("Capital: ");
+        lblPoblacionE = new JLabel("Poblacion: ");
+        lblMunicipioE = new JLabel("Municipios: ");
+        lblUrlE = new JLabel("URL: ");
+        txtIdE = new JTextField(6);
+        txtIdE.setText("0");
+        txtIdE.setEnabled(true);
+        txtEstadoE = new JTextField(15);
+        txtCapitalE = new JTextField(15);
+        txtPoblacionE = new JTextField(15);
+        txtMunicipioE = new JTextField(15);
+        txtUrlE = new JTextField(15);
+        panel4.add(lblIdE);
+        panel4.add(txtIdE);
+        panel4.add(lblEstadoE);
+        panel4.add(txtEstadoE);
+        panel4.add(lblCapitalE);
+        panel4.add(txtCapitalE);
+        panel4.add(lblPoblacionE);
+        panel4.add(txtPoblacionE);
+        panel4.add(lblMunicipioE);
+        panel4.add(txtMunicipioE);
+        panel4.add(lblUrlE);
+        panel4.add(txtUrlE);
+        panel4.add(btnActualizar);
+        panel4.add(btnBorrar);
 
         this.getContentPane().add(panel1,0);
         this.getContentPane().add(panel2,1);
@@ -100,6 +144,22 @@ public class VentanaEdo extends JFrame {
         txtMunicipio.setText("");
         txtPoblacion.setText("");
         txtUrl.setText("");
+    }
+
+    public JButton getBtnBorrar() {
+        return btnBorrar;
+    }
+
+    public void setBtnBorrar(JButton btnBorrar) {
+        this.btnBorrar = btnBorrar;
+    }
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public void setBtnActualizar(JButton btnActualizar) {
+        this.btnActualizar = btnActualizar;
     }
 
     public JLabel getLblId() {
@@ -120,6 +180,102 @@ public class VentanaEdo extends JFrame {
 
     public JLabel getLblCapital() {
         return lblCapital;
+    }
+
+    public JLabel getLblIdE() {
+        return lblIdE;
+    }
+
+    public void setLblIdE(JLabel lblIdE) {
+        this.lblIdE = lblIdE;
+    }
+
+    public JLabel getLblEstadoE() {
+        return lblEstadoE;
+    }
+
+    public void setLblEstadoE(JLabel lblEstadoE) {
+        this.lblEstadoE = lblEstadoE;
+    }
+
+    public JLabel getLblCapitalE() {
+        return lblCapitalE;
+    }
+
+    public void setLblCapitalE(JLabel lblCapitalE) {
+        this.lblCapitalE = lblCapitalE;
+    }
+
+    public JLabel getLblPoblacionE() {
+        return lblPoblacionE;
+    }
+
+    public void setLblPoblacionE(JLabel lblPoblacionE) {
+        this.lblPoblacionE = lblPoblacionE;
+    }
+
+    public JLabel getLblMunicipioE() {
+        return lblMunicipioE;
+    }
+
+    public void setLblMunicipioE(JLabel lblMunicipioE) {
+        this.lblMunicipioE = lblMunicipioE;
+    }
+
+    public JLabel getLblUrlE() {
+        return lblUrlE;
+    }
+
+    public void setLblUrlE(JLabel lblUrlE) {
+        this.lblUrlE = lblUrlE;
+    }
+
+    public JTextField getTxtIdE() {
+        return txtIdE;
+    }
+
+    public void setTxtIdE(JTextField txtIdE) {
+        this.txtIdE = txtIdE;
+    }
+
+    public JTextField getTxtEstadoE() {
+        return txtEstadoE;
+    }
+
+    public void setTxtEstadoE(JTextField txtEstadoE) {
+        this.txtEstadoE = txtEstadoE;
+    }
+
+    public JTextField getTxtCapitalE() {
+        return txtCapitalE;
+    }
+
+    public void setTxtCapitalE(JTextField txtCapitalE) {
+        this.txtCapitalE = txtCapitalE;
+    }
+
+    public JTextField getTxtPoblacionE() {
+        return txtPoblacionE;
+    }
+
+    public void setTxtPoblacionE(JTextField txtPoblacionE) {
+        this.txtPoblacionE = txtPoblacionE;
+    }
+
+    public JTextField getTxtMunicipioE() {
+        return txtMunicipioE;
+    }
+
+    public void setTxtMunicipioE(JTextField txtMunicipioE) {
+        this.txtMunicipioE = txtMunicipioE;
+    }
+
+    public JTextField getTxtUrlE() {
+        return txtUrlE;
+    }
+
+    public void setTxtUrlE(JTextField txtUrlE) {
+        this.txtUrlE = txtUrlE;
     }
 
     public void setLblCapital(JLabel lblCapital) {
