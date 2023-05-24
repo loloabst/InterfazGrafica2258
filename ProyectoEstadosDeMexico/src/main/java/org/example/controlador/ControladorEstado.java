@@ -58,34 +58,42 @@ public class ControladorEstado extends MouseAdapter {
             try {
                 this.view.getImagenEstado().setIcon(tmp.getImagen());
             } catch (MalformedURLException mfue) {
-                System.out.println(e.toString());
+                System.out.println(mfue.toString());
             }
         }
         if (e.getSource() == this.view.getBtnActualizar()) {
-            int index = this.view.getTblEstados().getSelectedRow();
-            Estado estado = modelo.getEstadoAtIndex(index);
+            int ind = this.view.getTblEstados().getSelectedRow();
+            Estado estado = modelo.getEstadoAtIndex(ind);
+            String index = String.valueOf(estado.getId());
+            System.out.println("ControladorEstado dice: " + index);
             estado.setNombreEdo(this.view.getTxtEstadoE().getText());
             estado.setCapital(this.view.getTxtCapitalE().getText());
             estado.setMunicipio(this.view.getTxtMunicipioE().getText());
             estado.setPoblacion(this.view.getTxtPoblacionE().getText());
             estado.setURL(this.view.getTxtUrlE().getText());
+            System.out.println("controladorEstado dice " + estado);
+            System.out.println();
             System.out.println(estado);
-            if (modelo.editarEstado(estado)) {
+            if (modelo.editarEstado(estado, index)) {
                 JOptionPane.showMessageDialog(view, "se editó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 this.view.getTblEstados().updateUI();
             } else {
                 JOptionPane.showMessageDialog(view,
                         "No se pudo editar la base de datos. por favor revise su conexion"
-                        , "Error al insertar"
+                        , "Error al editar"
                         , JOptionPane.ERROR_MESSAGE);
             }
         }
 
 
         if (e.getSource() == this.view.getBtnBorrar()) {
-            String index = String.valueOf(this.view.getTblEstados().getSelectedRow());
+            int ind = this.view.getTblEstados().getSelectedRow();
+            Estado estado = modelo.getEstadoAtIndex(ind);
+            String index = String.valueOf(estado.getId());
             System.out.println("ControladorEstado dice: " +index);
             System.out.println("ControladorEstado dice: " + index.getClass().getSimpleName());
+            estado.setId(Integer.parseInt(this.view.getTxtIdE().getText()));
+
             if (modelo.borrarEstado(index)) {
                 JOptionPane.showMessageDialog(view, "se borró correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 this.view.getTblEstados().updateUI();
