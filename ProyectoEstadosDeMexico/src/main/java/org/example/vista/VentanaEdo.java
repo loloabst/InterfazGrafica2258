@@ -20,8 +20,10 @@ public class VentanaEdo extends JFrame {
     private JTextField txtUrl;
     private JButton btnAgregar;
     private JButton btnCargar;
+    private JButton btnBorrar;
     private JButton btnActualizar;
     private JTable tblEstados;
+
     private JScrollPane scrollPane;
     private GridLayout layout;
     private JPanel panel1;//formulario para capturar
@@ -34,9 +36,7 @@ public class VentanaEdo extends JFrame {
         return btnActualizar;
     }
 
-    public void setBtnActualizar(JButton btnActualizar) {
-        this.btnActualizar = btnActualizar;
-    }
+
 
     public VentanaEdo(String title) throws HeadlessException {
         super(title);
@@ -97,6 +97,7 @@ public class VentanaEdo extends JFrame {
         panel4.setBackground(new Color(128, 104, 246));
         btnActualizar = new JButton("Actualizar");
         panel4.add(btnActualizar);
+        panel4.add(btnBorrar);
         lblId = new JLabel("Id: ");
         lblEstado = new JLabel("Estado: ");
         lblCapital = new JLabel("Capital: ");
@@ -163,6 +164,18 @@ public class VentanaEdo extends JFrame {
 
     public JLabel getLblCapital() {
         return lblCapital;
+    }
+
+    public JButton getBtnBorrar() {
+        return btnBorrar;
+    }
+
+    public void setBtnActualizar(JButton btnActualizar) {
+        this.btnActualizar = btnActualizar;
+    }
+
+    public void setBtnBorrar(JButton btnBorrar) {
+        btnBorrar = btnBorrar;
     }
 
     public void setLblCapital(JLabel lblCapital) {

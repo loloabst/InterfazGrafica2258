@@ -13,6 +13,8 @@ public class ControladorEstado extends MouseAdapter {
     private VentanaEdo view;
     private ModeloTablaEstado modelo;
 
+
+
     public ControladorEstado(VentanaEdo view) {
         this.view = view;
         modelo = new ModeloTablaEstado();
@@ -79,10 +81,30 @@ public class ControladorEstado extends MouseAdapter {
 
             // Aquí puedes realizar la actualización en la base de datos utilizando el objeto estado actualizado
 
-            JOptionPane.showMessageDialog(view, "Se actualizó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            this.view.getTblEstados().updateUI();
-        }
+            if (modelo.editarEstado(estado)) {
+                JOptionPane.showMessageDialog(view, "se editó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                this.view.getTblEstados().updateUI();
+            } else {
+                JOptionPane.showMessageDialog(view,
+                        "No se pudo editar la base de datos. por favor revise su conexion"
+                        , "Error al insertar"
+                        , JOptionPane.ERROR_MESSAGE);
+            }
 
+        }
+        if(e.getSource() == this.view.getBtnBorrar()) {
+            int index = this.view.getTblEstados().getSelectedRow();
+            System.out.println(index);
+            if (modelo.borrarEstado(String.valueOf(index))) {
+                JOptionPane.showMessageDialog(view, "se borró correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                this.view.getTblEstados().updateUI();
+            } else {
+                JOptionPane.showMessageDialog(view,
+                        "No se pudo borrar la base de datos. por favor revise su conexion"
+                        , "Error al borrar"
+                        , JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
 
         this.view.limpiar();

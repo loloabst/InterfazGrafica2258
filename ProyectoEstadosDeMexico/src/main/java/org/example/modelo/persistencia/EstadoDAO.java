@@ -33,9 +33,9 @@ public class EstadoDAO implements InterfazDAO {
         PreparedStatement pstm = ConexionSingleton.getInstance("estadosDB.db").getConnection().prepareStatement(sqlUpdate);
         pstm.setString(1, ((Estado) obj).getNombreEdo());
         pstm.setString(2, ((Estado) obj).getCapital());
-        pstm.setString(1, ((Estado) obj).getMunicipio());
-        pstm.setString(2, ((Estado) obj).getPoblacion());
-        pstm.setString(1, ((Estado) obj).getURL());
+        pstm.setString(3, ((Estado) obj).getMunicipio());
+        pstm.setString(4, ((Estado) obj).getPoblacion());
+        pstm.setString(5, ((Estado) obj).getURL());
         rowCount = pstm.executeUpdate();
         return rowCount < 0;
     }

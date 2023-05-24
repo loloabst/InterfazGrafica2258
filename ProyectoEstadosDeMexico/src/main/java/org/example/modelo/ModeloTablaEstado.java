@@ -164,4 +164,31 @@ public class ModeloTablaEstado implements TableModel {
     public Estado getEstadoAtIndex(int idx){
         return datos.get(idx);
     }
+    public  boolean editarEstado(Estado estado){
+        boolean resultado = false;
+        try {
+            if (ldao.update(estado)) {
+                datos.add(estado);
+                resultado = true;
+            } else {
+                resultado = false;
+            }
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }
+        return resultado;
+    }
+    public boolean borrarEstado(String index) {
+        boolean resultado = false;
+        try {
+            if (ldao.delete(index)) {
+                resultado = true;
+            } else {
+                resultado = false;
+            }
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }
+        return resultado;
+    }
 }
