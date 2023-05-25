@@ -40,28 +40,31 @@ public class VentanaEdo extends JFrame {
     private JPanel panel3;//panel para mostrar imagenes
     private JPanel panel4;//formulario para actualizar y eliminar
     private JLabel imagenEstado;
+    private JLabel lblResultado;
+
     public VentanaEdo(String title) throws HeadlessException {
         super(title);
         this.setSize(1200,800);
         layout = new GridLayout(2, 2);
         this.getContentPane().setLayout(layout);
+        lblResultado = new JLabel();
         //panel1
         panel1 = new JPanel(new FlowLayout());
-        panel1.setBackground(new Color(239,200,200));
+        panel1.setBackground(new Color(230, 255, 253));
         lblId = new JLabel("Id: ");
         lblEstado = new JLabel("Estado: ");
         lblCapital = new JLabel("Capital: ");
         lblPoblacion = new JLabel("Poblacion: ");
-        lblMunicipio = new JLabel("Municipios: ");
+        lblMunicipio = new JLabel("Municipio: ");
         lblUrl = new JLabel("URL: ");
-        txtId = new JTextField(6);
+        txtId = new JTextField(2);
         txtId.setText("0");
         txtId.setEnabled(false);
-        txtEstado = new JTextField(15);
-        txtCapital = new JTextField(15);
-        txtPoblacion = new JTextField(15);
-        txtMunicipio = new JTextField(15);
-        txtUrl = new JTextField(15);
+        txtEstado = new JTextField(40);
+        txtCapital = new JTextField(45);
+        txtPoblacion = new JTextField(45);
+        txtMunicipio = new JTextField(45);
+        txtUrl = new JTextField(45);
 
         btnAgregar = new JButton("Agregar");
         panel1.add(lblId);
@@ -80,7 +83,7 @@ public class VentanaEdo extends JFrame {
         panel1.add(btnAgregar);
         // panel 2
         panel2 = new JPanel(new FlowLayout());
-        panel2.setBackground(new Color(55, 210, 28));
+        panel2.setBackground(new Color(183, 153, 255));
         btnCargar = new JButton("Cargar");
         panel2.add(btnCargar);
         tblEstados = new JTable();
@@ -90,29 +93,29 @@ public class VentanaEdo extends JFrame {
 
         // panel 3
         panel3 = new JPanel(new FlowLayout());
-        panel3.setBackground(new Color(84, 245, 189));
-        imagenEstado = new JLabel("...");
+        panel3.setBackground(new Color(172, 188, 255));
+        imagenEstado = new JLabel("Imagen: ");
         panel3.add(imagenEstado);
 
         // panel 4
         panel4 = new JPanel(new FlowLayout());
-        panel4.setBackground(new Color(128, 104, 246));
+        panel4.setBackground(new Color(174, 226, 255));
         btnActualizar = new JButton("Actualizar");
         btnBorrar = new JButton("Borrar");
         lblIdE = new JLabel("Id: ");
         lblEstadoE = new JLabel("Estado: ");
         lblCapitalE = new JLabel("Capital: ");
         lblPoblacionE = new JLabel("Poblacion: ");
-        lblMunicipioE = new JLabel("Municipios: ");
+        lblMunicipioE = new JLabel("Municipio: ");
         lblUrlE = new JLabel("URL: ");
-        txtIdE = new JTextField(6);
+        txtIdE = new JTextField(2);
         txtIdE.setText("0");
         txtIdE.setEnabled(true);
-        txtEstadoE = new JTextField(15);
-        txtCapitalE = new JTextField(15);
-        txtPoblacionE = new JTextField(15);
-        txtMunicipioE = new JTextField(15);
-        txtUrlE = new JTextField(15);
+        txtEstadoE = new JTextField(40);
+        txtCapitalE = new JTextField(45);
+        txtPoblacionE = new JTextField(45);
+        txtMunicipioE = new JTextField(45);
+        txtUrlE = new JTextField(45);
         panel4.add(lblIdE);
         panel4.add(txtIdE);
         panel4.add(lblEstadoE);
@@ -127,6 +130,8 @@ public class VentanaEdo extends JFrame {
         panel4.add(txtUrlE);
         panel4.add(btnActualizar);
         panel4.add(btnBorrar);
+
+
 
         this.getContentPane().add(panel1,0);
         this.getContentPane().add(panel2,1);
@@ -144,6 +149,14 @@ public class VentanaEdo extends JFrame {
         txtMunicipio.setText("");
         txtPoblacion.setText("");
         txtUrl.setText("");
+    }
+
+    public JLabel getLblResultado() {
+        return lblResultado;
+    }
+
+    public void setLblResultado(JLabel lblResultado) {
+        this.lblResultado = lblResultado;
     }
 
     public JButton getBtnBorrar() {

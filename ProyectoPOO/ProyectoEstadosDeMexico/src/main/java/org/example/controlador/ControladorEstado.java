@@ -22,6 +22,7 @@ public class ControladorEstado extends MouseAdapter {
         this.view.getTblEstados().addMouseListener(this);
         this.view.getBtnBorrar().addMouseListener(this);
         this.view.getBtnActualizar().addMouseListener(this);
+
     }
 
     @Override
@@ -87,22 +88,35 @@ public class ControladorEstado extends MouseAdapter {
 
 
         if (e.getSource() == this.view.getBtnBorrar()) {
-            int ind = this.view.getTblEstados().getSelectedRow();
-            Estado estado = modelo.getEstadoAtIndex(ind);
-            String index = String.valueOf(estado.getId());
-            System.out.println("ControladorEstado dice: " +index);
-            System.out.println("ControladorEstado dice: " + index.getClass().getSimpleName());
-            estado.setId(Integer.parseInt(this.view.getTxtIdE().getText()));
+            //System.out.println("opcion");
+            int respuesta = JOptionPane.showConfirmDialog(view,
+                    "estas seguro de borrar el registro?",
+                    "confirmacion",
+                    JOptionPane.YES_NO_OPTION
+            );
+            if (respuesta == JOptionPane.YES_NO_OPTION){
+                view.getLblResultado().setText("Elegiste la opcion SI");
+                int ind = this.view.getTblEstados().getSelectedRow();
+                Estado estado = modelo.getEstadoAtIndex(ind);
+                String index = String.valueOf(estado.getId());
+                System.out.println("ControladorEstado dice: " +index);
+                System.out.println("ControladorEstado dice: " + index.getClass().getSimpleName());
+                estado.setId(Integer.parseInt(this.view.getTxtIdE().getText()));
 
-            if (modelo.borrarEstado(index)) {
-                JOptionPane.showMessageDialog(view, "se borró correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                this.view.getTblEstados().updateUI();
-            } else {
-                JOptionPane.showMessageDialog(view,
-                        "No se pudo borrar la base de datos. por favor revise su conexion"
-                        , "Error al borrar"
-                        , JOptionPane.ERROR_MESSAGE);
+                if (modelo.borrarEstado(index)) {
+                    JOptionPane.showMessageDialog(view, "se borró correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    this.view.getTblEstados().updateUI();
+                } else {
+                    JOptionPane.showMessageDialog(view,
+                            "No se pudo borrar la base de datos. por favor revise su conexion"
+                            , "Error al borrar"
+                            , JOptionPane.ERROR_MESSAGE);
+                }
+
+            }else {
+                view.getLblResultado().setText("Elegiste la opcion NO");
             }
+
         }
         this.view.limpiar();
     }
