@@ -16,7 +16,7 @@ public class ModeloTablaEstado implements TableModel {
         ldao = new EstadoDAO();
         datos = new ArrayList<>();
     }
-
+    // Implementación de los métodos de la interfaz TableModel
     public ModeloTablaEstado(ArrayList<Estado> datos) {
         this.datos = datos;
         ldao = new EstadoDAO();
@@ -25,15 +25,15 @@ public class ModeloTablaEstado implements TableModel {
     @Override
     public int getRowCount() {
         return datos.size();
-    }
+    }// Retorna el número de filas en la tabla
 
     @Override
     public int getColumnCount() {
         return COLUMNS;
-    }
+    }// Retorna el número de columnas en la tabla
 
     @Override
-    public String getColumnName(int rowIndex) {
+    public String getColumnName(int rowIndex) {// Retorna el nombre de la columna en el índice dado
         switch (rowIndex) {
             case 0:
                 return "id";
@@ -53,7 +53,8 @@ public class ModeloTablaEstado implements TableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int rowIndex) {
+    public Class<?> getColumnClass(int rowIndex) {// Retorna la clase de datos
+        // para la columna en el índice dado
         switch (rowIndex) {
             case 0:
                 return Integer.class;
@@ -73,12 +74,14 @@ public class ModeloTablaEstado implements TableModel {
     }
 
     @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
+    public boolean isCellEditable(int rowIndex, int columnIndex) {// Indica si una celda
+        // en particular es editable o no. en este caso, si
         return true;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public Object getValueAt(int rowIndex, int columnIndex) {  // Retorna el valor de la celda
+        // en la fila y columna especificadas
         Estado tmp = datos.get(rowIndex);
         switch (columnIndex) {
             case 0:
@@ -99,10 +102,11 @@ public class ModeloTablaEstado implements TableModel {
     }
 
     @Override
-    public void setValueAt(Object o, int rowIndex, int colIndex) {
+    public void setValueAt(Object o, int rowIndex, int colIndex) {// Establece el valor
+        // de la celda en la fila y columna especificadas
         switch (colIndex) {
             case 0:
-
+            // No se modifica nada para la columna 'id'
                 break;
             case 1:
                 datos.get(rowIndex).setNombreEdo((String) o);
@@ -136,7 +140,8 @@ public class ModeloTablaEstado implements TableModel {
 
     }
 
-    public void cargarDatos() {
+    public void cargarDatos() { // Carga los datos desde la capa de acceso
+        // a datos (EstadoDAO) al ArrayList de datos
         try {
             ArrayList<Estado> tirar = ldao.obtenerTodo();
             System.out.println(tirar);
@@ -147,7 +152,8 @@ public class ModeloTablaEstado implements TableModel {
 
     }
 
-    public boolean agregarEstado(Estado estado) {
+    public boolean agregarEstado(Estado estado) {// Agrega un nuevo Estado a
+        // la tabla y a la capa de acceso a datos
         boolean resultado = false;
         try {
             if (ldao.insertar(estado)) {
@@ -161,10 +167,12 @@ public class ModeloTablaEstado implements TableModel {
         }
         return resultado;
     }
-    public Estado getEstadoAtIndex(int idx){
+    public Estado getEstadoAtIndex(int idx){ // Retorna el
+        // objeto Estado en el índice especificado
         return datos.get(idx);
     }
-    public  boolean editarEstado(Estado estado, String index){
+    public  boolean editarEstado(Estado estado, String index){// Edita un Estado existente en
+        // la tabla y en la capa de acceso a datos
         System.out.println("modelo tabla dice " + estado);
         boolean resultado = false;
         try {
@@ -178,7 +186,8 @@ public class ModeloTablaEstado implements TableModel {
         }
         return resultado;
     }
-    public boolean borrarEstado(String index) {
+    public boolean borrarEstado(String index) {// Borra un Estado de
+        // la tabla y de la capa de acceso a datos
         System.out.println("modelo tabla dice: " + index);
         System.out.println("modelo tabla dice: " + index.getClass().getSimpleName());
         boolean resultado = false;

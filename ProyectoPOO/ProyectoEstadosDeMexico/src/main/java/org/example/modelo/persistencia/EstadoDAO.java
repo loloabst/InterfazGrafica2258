@@ -14,6 +14,7 @@ public class EstadoDAO implements InterfazDAO {
 
     @Override
     public boolean insertar(Object obj) throws SQLException {
+        // Método para insertar un estado en la base de datos
         String sqlInsert = "INSERT INTO estados(nombre, capital, municipio, poblacion, URL) VALUES(?, ?, ?, ?, ?)";
         int rowCount = 0;
         PreparedStatement pstm = ConexionSingleton.getInstance("estadosDB.db").getConnection().prepareStatement(sqlInsert);
@@ -28,6 +29,7 @@ public class EstadoDAO implements InterfazDAO {
 
     @Override
     public boolean update(Object estado, String index) throws SQLException {
+        // Método para actualizar un estado en la base de datos
         String sqlUpdate = "UPDATE estados SET nombre = ?, capital = ?, municipio = ?, poblacion = ?, URL = ? WHERE id = ? ; ";
         int rowCount = 0;
         System.out.println("EstadoDAO dice: " + estado);
@@ -45,6 +47,7 @@ public class EstadoDAO implements InterfazDAO {
 
     @Override
     public boolean delete(String index) throws SQLException {
+        // Método para eliminar un estado de la base de datos
         System.out.println("EstadoDAO dice: " + index);
         String sqlDelete = "DELETE FROM estados WHERE id = ?;";
         int rowCount = 0;
@@ -59,6 +62,7 @@ public class EstadoDAO implements InterfazDAO {
 
     @Override
     public ArrayList obtenerTodo() throws SQLException {
+        // Método para obtener todos los estados de la base de datos
         String sql = "SELECT * FROM estados";
         ArrayList<Estado> resultado = new ArrayList<>();
 
@@ -73,6 +77,7 @@ public class EstadoDAO implements InterfazDAO {
 
     @Override
     public Object buscarPorId(String id) throws SQLException {
+        // Método para buscar un estado por su ID en la base de datos
         String sql = "SELECT * FROM estados WHERE id = ? ;";
         Estado estado = null;
 

@@ -26,14 +26,15 @@ public class ControladorEstado extends MouseAdapter {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == this.view.getBtnCargar()) {
-
+    public void mouseClicked(MouseEvent e) { //todos los eventos de cuando se da click con el mouse
+        if (e.getSource() == this.view.getBtnCargar()) { // cuando se presiona el boton cargar del panel 1
+            // Evento del botón "Cargar"
             modelo.cargarDatos();
             this.view.getTblEstados().setModel(modelo);
             this.view.getTblEstados().updateUI();
         }
         if (e.getSource() == this.view.getBtnAgregar()) {
+            // Evento del botón "Agregar"
             Estado estado = new Estado();
             estado.setId(0);
             estado.setNombreEdo(this.view.getTxtEstado().getText());
@@ -53,6 +54,7 @@ public class ControladorEstado extends MouseAdapter {
             }
         }
         if (e.getSource() == view.getTblEstados()) {
+            // Evento de clic en la tabla de estados
             System.out.println("evento sobre la tabla");
             int index = this.view.getTblEstados().getSelectedRow();
             Estado tmp = modelo.getEstadoAtIndex(index);
@@ -63,6 +65,7 @@ public class ControladorEstado extends MouseAdapter {
             }
         }
         if (e.getSource() == this.view.getBtnActualizar()) {
+            // Evento del botón "Actualizar"
             int ind = this.view.getTblEstados().getSelectedRow();
             Estado estado = modelo.getEstadoAtIndex(ind);
             String index = String.valueOf(estado.getId());
@@ -73,7 +76,6 @@ public class ControladorEstado extends MouseAdapter {
             estado.setPoblacion(this.view.getTxtPoblacionE().getText());
             estado.setURL(this.view.getTxtUrlE().getText());
             System.out.println("controladorEstado dice " + estado);
-            System.out.println();
             System.out.println(estado);
             if (modelo.editarEstado(estado, index)) {
                 JOptionPane.showMessageDialog(view, "se editó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -88,12 +90,12 @@ public class ControladorEstado extends MouseAdapter {
 
 
         if (e.getSource() == this.view.getBtnBorrar()) {
-            //System.out.println("opcion");
+            // Evento del botón "Borrar"
             int respuesta = JOptionPane.showConfirmDialog(view,
                     "estas seguro de borrar el registro?",
                     "confirmacion",
                     JOptionPane.YES_NO_OPTION
-            );
+            );// para dos opcions, si y no
             if (respuesta == JOptionPane.YES_NO_OPTION){
                 view.getLblResultado().setText("Elegiste la opcion SI");
                 int ind = this.view.getTblEstados().getSelectedRow();

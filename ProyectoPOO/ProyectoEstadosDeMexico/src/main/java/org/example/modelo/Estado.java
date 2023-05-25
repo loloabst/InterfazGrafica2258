@@ -24,7 +24,7 @@ public class Estado {
         this.poblacion = poblacion;
         this.URL = URL;
     }
-
+    // metodos de acceso
     public int getId() {
         return id;
     }

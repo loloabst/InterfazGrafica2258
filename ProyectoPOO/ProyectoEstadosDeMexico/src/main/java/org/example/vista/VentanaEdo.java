@@ -4,18 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaEdo extends JFrame {
-    private JLabel lblId;
-    private JLabel lblEstado;
-    private JLabel lblCapital;
-    private JLabel lblPoblacion;
-    private JLabel lblMunicipio;
-    private JLabel lblUrl;
-    private JTextField txtId;
-    private JTextField txtEstado;
-    private JTextField txtCapital;
-    private JTextField txtPoblacion;
-    private JTextField txtMunicipio;
-    private JTextField txtUrl;
+    // declaracion de los componentes de la interfaz
+    private JLabel lblId; // etiqueta de Id
+    private JLabel lblEstado;// etiqueta de Estado (nombre)
+    private JLabel lblCapital;// etiqueta de Capital
+    private JLabel lblPoblacion;// etiqueta de Poblacion
+    private JLabel lblMunicipio;// etiqueta de Municipio
+    private JLabel lblUrl;// etiqueta de URL
+    private JTextField txtId;// campo de texto para Id
+    private JTextField txtEstado;// etiqueta de estado
+    private JTextField txtCapital;// etiqueta de capital
+    private JTextField txtPoblacion;// etiqueta de poblacion
+    private JTextField txtMunicipio;// etiqueta de municipio
+    private JTextField txtUrl;// etiqueta de URL
+    // misma funcion que los de arriba, pero para el panel 4
     private JLabel lblIdE;
     private JLabel lblEstadoE;
     private JLabel lblCapitalE;
@@ -28,29 +30,33 @@ public class VentanaEdo extends JFrame {
     private JTextField txtPoblacionE;
     private JTextField txtMunicipioE;
     private JTextField txtUrlE;
+    //declaracion para los botones
     private JButton btnAgregar;
     private JButton btnCargar;
     private JButton btnBorrar;
     private JButton btnActualizar;
     private JTable tblEstados;
-    private JScrollPane scrollPane;
-    private GridLayout layout;
+    private JScrollPane scrollPane; // scroll que saldra cuando en el panel 1 tenga mucha info
+    private GridLayout layout; //para ageragar los componentes a un grid rectangular
     private JPanel panel1;//formulario para capturar
-    private JPanel panel2;//tabla para mostrar libros
+    private JPanel panel2;//tabla para mostrar la bd
     private JPanel panel3;//panel para mostrar imagenes
     private JPanel panel4;//formulario para actualizar y eliminar
-    private JLabel imagenEstado;
-    private JLabel lblResultado;
+    private JLabel imagenEstado; //para la imagen del estado
+    private JLabel lblResultado; // para la decision tomada en el boton eliminar
 
     public VentanaEdo(String title) throws HeadlessException {
         super(title);
-        this.setSize(1200,800);
-        layout = new GridLayout(2, 2);
+        this.setSize(1200,800); //dimensiones
+        layout = new GridLayout(2, 2); // de cuanto estara dividida
         this.getContentPane().setLayout(layout);
         lblResultado = new JLabel();
-        //panel1
+
+
+        //Configuración de panel1 (formulario para capturar datos)
         panel1 = new JPanel(new FlowLayout());
         panel1.setBackground(new Color(230, 255, 253));
+        // Inicialización de etiquetas y campos de texto
         lblId = new JLabel("Id: ");
         lblEstado = new JLabel("Estado: ");
         lblCapital = new JLabel("Capital: ");
@@ -65,8 +71,9 @@ public class VentanaEdo extends JFrame {
         txtPoblacion = new JTextField(45);
         txtMunicipio = new JTextField(45);
         txtUrl = new JTextField(45);
-
+        // Configuración del botón Agregar
         btnAgregar = new JButton("Agregar");
+        // Agregar componentes al panel1
         panel1.add(lblId);
         panel1.add(txtId);
         panel1.add(lblEstado);
@@ -79,29 +86,33 @@ public class VentanaEdo extends JFrame {
         panel1.add(txtMunicipio);
         panel1.add(lblUrl);
         panel1.add(txtUrl);
-
         panel1.add(btnAgregar);
-        // panel 2
+
+
+        // Configuración de panel2 (tabla para mostrar estados)
         panel2 = new JPanel(new FlowLayout());
-        panel2.setBackground(new Color(183, 153, 255));
-        btnCargar = new JButton("Cargar");
-        panel2.add(btnCargar);
+        panel2.setBackground(new Color(183, 153, 255)); //colores
+        // Creación de la tabla
+        btnCargar = new JButton("Cargar"); // boton de cargar
+        panel2.add(btnCargar); // añadir el boton a el panel 2
         tblEstados = new JTable();
         scrollPane = new JScrollPane(tblEstados);
-        panel2.add(scrollPane);
+        // Creación del scrollpane para agregar la tabla
+        panel2.add(scrollPane); // se añade el scrollpane
 
 
-        // panel 3
+        // Configuración de panel3 (panel para mostrar imágenes)
         panel3 = new JPanel(new FlowLayout());
         panel3.setBackground(new Color(172, 188, 255));
+        // Inicialización de la etiqueta de la imagen
         imagenEstado = new JLabel("Imagen: ");
-        panel3.add(imagenEstado);
+        panel3.add(imagenEstado);// Agregar la etiqueta al panel3
 
-        // panel 4
+
+        // Configuración de panel4 (formulario para actualizar y eliminar datos)
         panel4 = new JPanel(new FlowLayout());
         panel4.setBackground(new Color(174, 226, 255));
-        btnActualizar = new JButton("Actualizar");
-        btnBorrar = new JButton("Borrar");
+        // Inicialización de etiquetas y campos de texto
         lblIdE = new JLabel("Id: ");
         lblEstadoE = new JLabel("Estado: ");
         lblCapitalE = new JLabel("Capital: ");
@@ -116,6 +127,10 @@ public class VentanaEdo extends JFrame {
         txtPoblacionE = new JTextField(45);
         txtMunicipioE = new JTextField(45);
         txtUrlE = new JTextField(45);
+        // Configuración de los botones Actualizar y Borrar
+        btnActualizar = new JButton("Actualizar");
+        btnBorrar = new JButton("Borrar");
+        // Agregar componentes al panel4
         panel4.add(lblIdE);
         panel4.add(txtIdE);
         panel4.add(lblEstadoE);
@@ -132,17 +147,19 @@ public class VentanaEdo extends JFrame {
         panel4.add(btnBorrar);
 
 
-
+        // Agregar los paneles al JFrame principal
         this.getContentPane().add(panel1,0);
         this.getContentPane().add(panel2,1);
         this.getContentPane().add(panel3,2);
         this.getContentPane().add(panel4,3);
 
+        // Configuración de la ventana principal
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        //
+
 
     }
+    //limpiar los campos despues de que se haya realizado una operación o accion
     public void limpiar(){
         txtEstado.setText("");
         txtCapital.setText("");
@@ -150,7 +167,7 @@ public class VentanaEdo extends JFrame {
         txtPoblacion.setText("");
         txtUrl.setText("");
     }
-
+    // metodos de acceso
     public JLabel getLblResultado() {
         return lblResultado;
     }
