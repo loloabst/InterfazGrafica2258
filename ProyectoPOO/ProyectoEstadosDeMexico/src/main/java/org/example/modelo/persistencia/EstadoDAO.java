@@ -16,7 +16,7 @@ public class EstadoDAO implements InterfazDAO {
     public boolean insertar(Object obj) throws SQLException {
         // Método para insertar un estado en la base de datos
         String sqlInsert = "INSERT INTO estados(nombre, capital, municipio, poblacion, URL) VALUES(?, ?, ?, ?, ?)";
-        int rowCount = 0;
+        int rowCount = 0; // para saber el numero de filas afectadas
         PreparedStatement pstm = ConexionSingleton.getInstance("estadosDB.db").getConnection().prepareStatement(sqlInsert);
         pstm.setString(1, ((Estado) obj).getNombreEdo());
         pstm.setString(2, ((Estado) obj).getCapital());

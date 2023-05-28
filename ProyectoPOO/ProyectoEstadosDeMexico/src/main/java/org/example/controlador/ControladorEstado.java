@@ -42,6 +42,7 @@ public class ControladorEstado extends MouseAdapter {
             estado.setMunicipio(this.view.getTxtMunicipio().getText());
             estado.setPoblacion(this.view.getTxtPoblacion().getText());
             estado.setURL(this.view.getTxtUrl().getText());
+            // se agregan a un
 
             if (modelo.agregarEstado(estado)) {
                 JOptionPane.showMessageDialog(view, "se agrego correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -56,34 +57,35 @@ public class ControladorEstado extends MouseAdapter {
         if (e.getSource() == view.getTblEstados()) {
             // Evento de clic en la tabla de estados
             System.out.println("evento sobre la tabla");
-            int index = this.view.getTblEstados().getSelectedRow();
-            Estado tmp = modelo.getEstadoAtIndex(index);
+            int index = this.view.getTblEstados().getSelectedRow(); // se ve la fila en donde fue presionado
+            Estado tmp = modelo.getEstadoAtIndex(index);//se obtiene el indice
             try {
-                this.view.getImagenEstado().setIcon(tmp.getImagen());
+                this.view.getImagenEstado().setIcon(tmp.getImagen()); // saldra la imagen del link
             } catch (MalformedURLException mfue) {
-                System.out.println(mfue.toString());
+                System.out.println(mfue.toString()); // por si el link ess invalido
             }
         }
         if (e.getSource() == this.view.getBtnActualizar()) {
             // Evento del botón "Actualizar"
-            int ind = this.view.getTblEstados().getSelectedRow();
-            Estado estado = modelo.getEstadoAtIndex(ind);
-            String index = String.valueOf(estado.getId());
+            int ind = this.view.getTblEstados().getSelectedRow(); // se obtiene el indice de la fila seleccionada
+            Estado estado = modelo.getEstadoAtIndex(ind); // se obtiene el objeto estado del indice seleccionado
+            String index = String.valueOf(estado.getId()); // se obtiene el indice y se convierte a string
             System.out.println("ControladorEstado dice: " + index);
             estado.setNombreEdo(this.view.getTxtEstadoE().getText());
             estado.setCapital(this.view.getTxtCapitalE().getText());
             estado.setMunicipio(this.view.getTxtMunicipioE().getText());
             estado.setPoblacion(this.view.getTxtPoblacionE().getText());
             estado.setURL(this.view.getTxtUrlE().getText());
+            // se actualizan las propiedades del estado con los valores ingresados
             System.out.println("controladorEstado dice " + estado);
-            System.out.println(estado);
             if (modelo.editarEstado(estado, index)) {
-                JOptionPane.showMessageDialog(view, "se editó correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                this.view.getTblEstados().updateUI();
+                JOptionPane.showMessageDialog(view, "se editó correctamente"
+                        , "Aviso", JOptionPane.INFORMATION_MESSAGE);// si la edicion es exitosa, saldra un mensaje de texto
+                this.view.getTblEstados().updateUI(); // se actualiza la tabla
             } else {
                 JOptionPane.showMessageDialog(view,
                         "No se pudo editar la base de datos. por favor revise su conexion"
-                        , "Error al editar"
+                        , "Error al editar"// mensaje de error
                         , JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -96,16 +98,19 @@ public class ControladorEstado extends MouseAdapter {
                     "confirmacion",
                     JOptionPane.YES_NO_OPTION
             );// para dos opcions, si y no
-            if (respuesta == JOptionPane.YES_NO_OPTION){
+            if (respuesta == JOptionPane.YES_NO_OPTION){ // si el usuario presiona "si"
                 view.getLblResultado().setText("Elegiste la opcion SI");
-                int ind = this.view.getTblEstados().getSelectedRow();
-                Estado estado = modelo.getEstadoAtIndex(ind);
-                String index = String.valueOf(estado.getId());
+                int ind = this.view.getTblEstados().getSelectedRow();// se obtiene el indice de la fila seleccionada
+                Estado estado = modelo.getEstadoAtIndex(ind); //se obtiene el objeto Estado correspondiente
+                // al índice seleccionado
+                String index = String.valueOf(estado.getId()); // Se obtiene el índice del estado y
+                // se lo convierte a una cadena de texto
                 System.out.println("ControladorEstado dice: " +index);
                 System.out.println("ControladorEstado dice: " + index.getClass().getSimpleName());
-                estado.setId(Integer.parseInt(this.view.getTxtIdE().getText()));
 
-                if (modelo.borrarEstado(index)) {
+                if (modelo.borrarEstado(index)) { // Se llama al método del objeto modelo
+                    // para eliminar el estado de la base de datos.
+                    // Si se borra correctamente, se muestra un mensaje de éxito en un cuadro de diálogo
                     JOptionPane.showMessageDialog(view, "se borró correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                     this.view.getTblEstados().updateUI();
                 } else {
