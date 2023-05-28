@@ -74,20 +74,4 @@ public class EstadoDAO implements InterfazDAO {
 
         return resultado;
     }
-
-    @Override
-    public Object buscarPorId(String id) throws SQLException {
-        // Método para buscar un estado por su ID en la base de datos
-        String sql = "SELECT * FROM estados WHERE id = ? ;";
-        Estado estado = null;
-
-        PreparedStatement pstm = ConexionSingleton.getInstance("estadosDB.db").getConnection().prepareStatement(sql);
-        pstm.setInt(1, Integer.parseInt(id));
-        ResultSet rst = pstm.executeQuery();
-        if (rst.next()) {
-            estado = new Estado(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6));
-            return estado;
-        }
-        return null;
-    }
 }
